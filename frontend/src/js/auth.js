@@ -24,7 +24,10 @@ class Auth {
             localStorage.setItem('cn_token', this.token);
 
             // Get user info
-            await this.getUserInfo();
+            const user = await this.getUserInfo();
+            if (!user) {
+                throw new Error('Failed to get user info after login');
+            }
 
             return true;
         } catch (error) {
@@ -146,8 +149,11 @@ if (window.location.pathname.includes('login.html')) {
             submitBtn.disabled = true;
 
             try {
-                await window.auth.login(username, password);
-                window.location.href = '/';
+                const loggedIn = await window.auth.login(username, password);
+                if (loggedIn) {
+                    window.location.href = '/';
+                    return;
+                }
             } catch (error) {
                 loginError.textContent = 'Невірне ім\'я користувача або пароль';
                 loginError.style.display = 'block';
