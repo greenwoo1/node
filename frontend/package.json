@@ -1,0 +1,13 @@
+{
+  "name": "controlnode-frontend",
+  "version": "1.0.0",
+  "description": "ControlNode Frontend Application",
+  "scripts": {
+    "start": "npx http-server src -p 80",
+    "dev": "npx http-server src -p 3000"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
